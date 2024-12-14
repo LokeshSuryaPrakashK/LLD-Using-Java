@@ -8,15 +8,6 @@ class Main
         System.out.println("Enter the size of the board:");
         int boardSize = sc.nextInt();
 
-        System.out.println("Enter the number of players:");
-        int numberOfPlayers = sc.nextInt();
-
-        System.out.println("Enter number of Dice");
-        int numberOfDice = sc.nextInt();
-        Dice dice = new Dice(numberOfDice);
-
-        Player playerposition=new Player();
-        Player_Turn players=new Player_Turn(numberOfPlayers, playerposition); 
         SnakeAndLadderPositions snakeAndLadderPositions = new SnakeAndLadderPositions(boardSize);
 
         if(boardSize !=100)
@@ -45,6 +36,16 @@ class Main
         {
             System.out.println("Board size is 100.");
         }
+
+        System.out.println("Enter the number of players:");
+        int numberOfPlayers = sc.nextInt();
+
+        System.out.println("Enter number of Dice");
+        int numberOfDice = sc.nextInt();
+        Dice dice = new Dice(numberOfDice);
+
+        Player playerposition=new Player();
+        Player_Turn players=new Player_Turn(numberOfPlayers, playerposition); 
 
 
         Gameboard game = new Gameboard(boardSize, dice, players, playerposition, snakeAndLadderPositions);

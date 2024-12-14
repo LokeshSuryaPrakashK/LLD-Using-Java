@@ -2,18 +2,11 @@ import java.util.*;
 public class Player 
 {
     HashMap<Integer, Integer> playerPosition;
-    private int boardsize=100;
     Player()
     {   
         playerPosition=new HashMap<Integer, Integer>();
-        // this.boardsize=gameboard.getBoardSize();
     }  
 
-    // public boolean validPlayerId(int id)
-    // {
-    //     if(id>0 && id<=noOfPlayers) 
-    //         return true;
-    // }
     
     public void addPlayer(int playerid)
     {
@@ -22,10 +15,19 @@ public class Player
         else
         {
             System.out.println("Player with the same id already exists.");
-            return;
         }
     }
     
+    public void removePlayer(int playerid)
+    {
+        if(!playerPosition.containsKey(playerid))
+            playerPosition.remove(playerid);
+        else
+        {
+            System.out.println("Player with the same id already exists.");
+        }
+    }
+
     public int getPosition(int playerid)
     {
         if(playerPosition.containsKey(playerid))
@@ -38,13 +40,6 @@ public class Player
     }
     public void setPosition(int playerid, int position)
     {
-        if(position>0 && position<=boardsize)
-        {
-            playerPosition.put(playerid, position);
-        }
-        else
-        {
-            System.out.println("Invalid position.");
-        }
+        playerPosition.put(playerid, position);
     }
 }
