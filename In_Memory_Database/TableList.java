@@ -37,6 +37,7 @@ public class TableList
             if(templist.contains(tableName))
             {
                 templist.remove(tableName);
+                System.out.println(tableName+"table is removed successfully");
             }
             else
                 System.out.println("Table does not exists.");
@@ -51,13 +52,27 @@ public class TableList
     {
         if(tableList.containsKey(dbname))
         {
+            int y=1;
             for(String i: tableList.get(dbname))
             {
-                System.out.print(i+", ");
+                System.out.print(y+"."+i+"\t");
+                y++;
             }
+            System.out.println();
         }
         else
-            System.out.println("DataBase does not exist.");
+            System.out.println("Table does not exist in the Database.");
     }
 
+    public String getSelectedTableName(String dbname, int index)
+    {
+        getTableNames(dbname);
+        LinkedList<String> templist = tableList.get(dbname);
+        if(index<=templist.size() && index>0)
+        {
+            String selectedTableName=templist.get(index-1);
+            return selectedTableName;
+        }
+        return "";
+    }
 }

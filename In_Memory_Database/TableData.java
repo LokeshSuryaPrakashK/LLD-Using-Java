@@ -4,7 +4,7 @@ public class TableData
 {
     TableList tableList;
     HashMap<String, HashMap<String, String>> tableData;
-    private HashMap<String, String> cellValues;
+    private HashMap<String, String> cellData;
     TableData(TableList tableList)
     {
         this.tableList=tableList;
@@ -13,37 +13,37 @@ public class TableData
 
     public void initializeTable(String tableName)
     {
-        HashMap<String, String> cellValues=new HashMap<>();
-        tableData.put(tableName, cellValues);
+        tableData.putIfAbsent(tableName, new HashMap<String, String>());
     }
 
     public void insertData(String tableName, String colname, String val)
     {
+        initializeTable(tableName);
         if(tableData.containsKey(tableName))
         {
-            HashMap<String, String> cellValues=tableData.get(tableName);
-            if(!cellValues.containsKey(colname))
+            cellData=tableData.get(tableName);
+            if(!cellData.containsKey(colname))
             {
-                cellValues.put(colname, val);
+                cellData.put(colname, val);
                 System.out.println("Data Inserted Successfully");
             }
             else
             {
-                System.out.println("Column already exists: " + colname);
+                System.out.println("Column already exists, enter different column name");
             }
         }
         else
             System.out.println("Table does not exist: " + tableName);
     }
 
-    public void removeData(String tableName, String colname, String val)
+    public void removeData(String tableName, String colname)
     {
         if(tableData.containsKey(tableName))
         {
-            if(cellValues.containsKey(colname))
+            if(cellData.containsKey(colname))
             {
-                cellValues.remove(colname);
-                System.out.println("Data Removed Successfully");
+                cellData.remove(colname);
+                System.out.println("Column Removed Successfully");
             }
             else
             {
@@ -58,9 +58,9 @@ public class TableData
     {
         if(tableData.containsKey(tableName))
         {
-            if(cellValues.containsKey(colname))
+            if(cellData.containsKey(colname))
             {
-                cellValues.put(colname, val);
+                cellData.put(colname, val);
                 System.out.println("Data Updated Successfully");
             }
             else
@@ -76,11 +76,12 @@ public class TableData
     {
         if(tableData.containsKey(tableName))
         {
-            HashMap<String, String> cellValues=tableData.get(tableName);
-            for(Map.Entry<String, String> i:cellValues.entrySet())
+            HashMap<String, String> cellData=tableData.get(tableName);
+            for(Map.Entry<String, String> i:cellData.entrySet())
             {
-                System.out.println(i.getKey() + ": " + i.getValue());
+                System.out.println("{ "+i.getKey() + ": " + i.getValue()+" }");
             }
+            // System.out.println();
         }
         else
             System.out.println("Table does not exists");
