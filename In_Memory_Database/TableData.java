@@ -43,7 +43,7 @@ public class TableData
             if(cellData.containsKey(colname))
             {
                 cellData.remove(colname);
-                System.out.println("Data Removed Successfully");
+                System.out.println("Column Removed Successfully");
             }
             else
             {
@@ -79,8 +79,9 @@ public class TableData
             HashMap<String, String> cellData=tableData.get(tableName);
             for(Map.Entry<String, String> i:cellData.entrySet())
             {
-                System.out.println(i.getKey() + ": " + i.getValue());
+                System.out.println("{ "+i.getKey() + ": " + i.getValue()+" }");
             }
+            // System.out.println();
         }
         else
             System.out.println("Table does not exists");
