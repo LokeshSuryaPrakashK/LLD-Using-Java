@@ -51,13 +51,28 @@ public class TableList
     {
         if(tableList.containsKey(dbname))
         {
+            int y=1;
             for(String i: tableList.get(dbname))
             {
-                System.out.print(i+", ");
+                System.out.print(y+". "+i+"\t");
+                y++;
             }
+            System.out.println();
         }
         else
             System.out.println("DataBase does not exist.");
     }
 
+    public String getSelectedTableName(String dbname, int index)
+    {
+        getTableNames(dbname);
+        LinkedList<String> templist = tableList.get(dbname);
+        if(index<=templist.size() && index>0)
+        {
+            String selectedTableName=templist.get(index-1);
+            System.out.println("Selected Table: "+ selectedTableName);
+            return selectedTableName;
+        }
+        return "";
+    }
 }

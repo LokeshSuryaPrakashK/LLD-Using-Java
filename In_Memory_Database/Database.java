@@ -48,20 +48,48 @@ public class Database
     }
 
 
-    public void getDatabaseNames(String username)
+    public int getDatabaseNames(String username)
     {
         if(database.containsKey(username))
         {
             LinkedList<String> databasesList = database.get(username);
+            int j=1;
             for(String i:databasesList)
             {
-                System.out.print(i+", ");
+                System.out.print(j + "." + i + "\t");
+                j++;
             }
+
+            // for(int i=0; i<databasesList.size();i++)
+            // {
+            //     System.out.print((i+1) + "." +databasesList.get(i) + ", ");
+            // }
             System.out.println();
+            return 1;
         }
         else
         {
-            System.out.println("User does not exist.");
+            System.out.println("Databases does not exist.");
+            return -1;
         }
+    }
+
+    public String getSelectedDatabase(String username, int index)
+    {
+        if(database.containsKey(username))
+        {
+            LinkedList<String> databasesList = database.get(username);
+            if(index>0 && index<=databasesList.size())
+            {
+                for(int i=0; i<databasesList.size();i++)
+                {
+                    if(i==(index-1))
+                        return databasesList.get(i);   
+                }
+            }
+            else
+                System.out.println("Invalid choice for database");
+        }
+        return "";
     }
 }
